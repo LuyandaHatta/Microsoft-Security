@@ -1,0 +1,13 @@
+Test - Azure VM Deletion
+Task 1: Create an analytics rule from the analytics rule wizard
+Azure VM Deletion rule created
+Exported Rule
+
+Task 2: Invoke an incident and review the associated actions
+Created Ubuntu VM
+Deleted VM
+
+Task 3: upload to Github
+
+Task 4: Create an analytics rule from an existing template
+
