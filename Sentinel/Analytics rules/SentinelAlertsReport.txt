@@ -1,0 +1,11 @@
+//SentinelAlertsReport
+//Credit @ https://github.com/ManagedSentinel/AzureSentinelKQLScripts/blob/master/SentinelAlertsReport.kql
+//Compromised Entity added as one of the projections
+
+let timeInterval = 7d;
+SecurityAlert
+| where TimeGenerated  > ago(timeInterval)
+//| where AlertName startswith 'MS-A'
+| summarize Count=count(),SampleDescription=max(Description),First=min(TimeGenerated),Last=max(TimeGenerated) by AlertName, AlertSeverity, CompromisedEntity
+| extend AvgPerDay = round(Count/(timeInterval/1d),2)
+| sort by Count desc
