@@ -1,0 +1,17 @@
+Suspicious URL in email
+
+Two tables joined together and look for emails with more than 0 URLs, and emails that contain links to URL from the SuspiciousURL watchlist
+
+
+let SuspiciousURL = _GetWatchlist ('SuspiciousURL')
+
+EmailEvents
+| where UrlCount > 1
+| join (
+
+EmailUrlInfo
+| where Url !contains "onedrive, sharepoint, teams, stream" 
+) on NetworkMessageId
+
+| project Subject, Url, SenderMailFromAddress, SenderFromAddress, SenderMailFromDomain, RecipientEmailAddress, Timestamp
+| order by Timestamp desc
