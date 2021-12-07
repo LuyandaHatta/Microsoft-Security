@@ -1,0 +1,7 @@
+//Name: Activity from infrequent country
+// Description: Hunting query for users linked to the Activity from infrequent country alert
+
+SigninLogs 
+| where UserPrincipalName == ''
+| where TimeGenerated  > todatetime('2021-12-06,00:00:00')
+| project UserDisplayName, UserPrincipalName, OperationName, AuthenticationRequirement, AppDisplayName, Status,  IPAddress, Location, DeviceDetail, AuthenticationDetails, ConditionalAccessStatus, ClientAppUsed, UserAgent
