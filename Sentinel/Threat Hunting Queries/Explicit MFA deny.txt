@@ -1,0 +1,9 @@
+// Name: Explicit MFA deny
+// Description: Hunting query for a use that explicitly denies MFA push
+
+SigninLogs
+| where ResultType == 500121
+| where Status has "MFA Denied; user declined the authentication"
+| where UserPrincipalName == ''
+| where TimeGenerated  > todatetime('2021-12-06,00:00:00')
+| project UserDisplayName, UserPrincipalName, OperationName, AuthenticationRequirement, AppDisplayName, Status,  IPAddress, Location, DeviceDetail, AuthenticationDetails, ConditionalAccessStatus, ClientAppUsed, UserAgent
