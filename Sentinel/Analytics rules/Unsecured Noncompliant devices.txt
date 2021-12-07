@@ -1,0 +1,12 @@
+// Name: Unsecured Noncompliant devices
+// Description: Alert for Unsecured Noncompliant coprorate devices from the past 7 days
+
+IntuneDevices 
+| where TimeGenerated > ago(7d)
+| where CompliantState == "Noncompliant"
+| where Ownership == "Corporate"
+| join kind=inner (
+IntuneDeviceComplianceOrg
+| where DeviceHealthThreatLevel != "Secured"
+) on DeviceName
+| project  DeviceName, DeviceId, PrimaryUser, CompliantState, Ownership, OS, OSVersion, ManagedBy, DeviceState, DeviceHealthThreatLevel, TimeGenerated
