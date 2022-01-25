@@ -1,0 +1,7 @@
+//Name: Unfamiliar sign-in properties
+//Description: This risk detection type considers past sign-in history (IP, Latitude / Longitude and ASN) to look for anomalous sign-ins. The system stores information about previous locations used by a user and considers these "familiar" locations. The risk detection is triggered when the sign-in occurs from a location that is not already in the list of familiar locations.
+
+SigninLogs 
+| where UserPrincipalName == ''
+| where TimeGenerated  > todatetime('2021-12-06,00:00:00')
+| project UserDisplayName, UserPrincipalName, OperationName, AuthenticationRequirement, AppDisplayName, Status,  IPAddress, Location, DeviceDetail, AuthenticationDetails, ConditionalAccessStatus, ClientAppUsed, UserAgent

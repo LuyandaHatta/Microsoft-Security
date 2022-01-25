@@ -1,0 +1,6 @@
+//Suspicious granting of permissions to an account incident response
+//Description: Display information necessary to extract the display name of “Suspicious granting of permissions to an account”
+
+AzureActivity
+| where CorrelationId == 'c051a3f5-8a56-403d-a29f-0640746b9c66'
+| project TimeGenerated, Caller, CallerIpAddress, ResourceGroup , Category, Level, OperationNameValue, Properties,ActivityStatus

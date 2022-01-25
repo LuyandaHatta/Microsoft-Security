@@ -1,5 +1,5 @@
-//Name: Activity from infrequent country
-// Description: Hunting query for users linked to the Activity from infrequent country alert
+//Name: Multiple failed login attempts
+//Description: This detection identifies users that failed multiple login attempts in a single session with respect to the baseline learned, which could indicate on a breach attempt.
 
 SigninLogs 
 | where UserPrincipalName == ''

@@ -1,5 +1,5 @@
-//Name: Activity from infrequent country
-// Description: Hunting query for users linked to the Activity from infrequent country alert
+//Name: Multiple failed user logon attempts to a service
+//Description: Activity policy ''Multiple failed user logon attempts to a service'' was triggered
 
 SigninLogs 
 | where UserPrincipalName == ''

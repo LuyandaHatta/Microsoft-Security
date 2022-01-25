@@ -1,0 +1,10 @@
+//Name: MFA disabled for a user
+//Description: Multi-Factor Authentication (MFA) helps prevent credential compromise. This alert identifies when an attempt has been made to disable MFA for a user
+
+ AuditLogs  
+    | where OperationName =~ "Disable Strong Authentication"
+    | extend InitiatedByUser =  tostring(parse_json(tostring(InitiatedBy.user)).userPrincipalName)
+    | extend Targetprop = todynamic(TargetResources)
+    | extend TargetUser = tostring(Targetprop[0].userPrincipalName) 
+    | where InitiatedByUser == ''
+    | project  TimeGenerated, AffectedUser = TargetUser, InitiatedByUser, Operation = OperationName

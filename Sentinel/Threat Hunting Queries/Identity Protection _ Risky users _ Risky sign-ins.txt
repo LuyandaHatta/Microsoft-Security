@@ -1,0 +1,10 @@
+//Name: Identity Protection | Risky users | Risky sign-ins 
+Risk detections
+//Descritption: Identity Protection identifies risks of many types, including Anonymous IP address use Atypical travel, Unfamiliar sign-in properties, etc. The risk signals can trigger remediation efforts such as requiring users to: perform Azure AD Multi-Factor Authentication, reset their password using self-service password reset, or blocking until an administrator takes action.
+
+SigninLogs
+| extend DeviceId = tostring(DeviceDetail.deviceId)
+| extend DispalyName = tostring(DeviceDetail.displayName)
+| where TimeGenerated > ago(7d)
+| where UserPrincipalName == ''
+| project TimeGenerated, UserDisplayName, AppDisplayName, Location, DeviceId, DeviceName = DispalyName
